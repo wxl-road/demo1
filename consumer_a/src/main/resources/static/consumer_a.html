@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>航空指挥系统技术demo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <style>
+        body,html{background-image:url(img/consumer.jpg);}
+        h1{font-size: 6em}
+        #content{
+            color: #333;
+            text-align: center;
+            letter-spacing: 0.5em;
+            font-size:3em;
+            overflow-y: auto;
+            padding:120px auto;
+            margin:80px auto;
+            border-radius: 10px;
+            width: 800px;
+            box-shadow:  0 0  200px #155173 inset ;
+            height: 600px;
+        }
+        .con_ul li{display: block}
+        #img{ border-radius:10px;display:none }
+        #addr{ margin-top: 30px; font-size: 1.2em}
+        @media (max-width: 1366px){
+            #content{height: 400px;}
+        }
+    </style>
+</head>
+<body>
+<div id="head">
+    <h1>Visual图像仿真</h1>
+</div>
+<div id="content">
+   <img src="" width="100%" id="img">
+    <h5 id="addr"></h5>
+</div>
+<div id="foot">
+    <h6>四川智捷天成科技有限公司版权所有</h6>
+</div>
+<script>
+    function WebSocketTest() {
+        if ("WebSocket" in window) {
+            var ws = new WebSocket("ws://localhost:8082/consumerA");
+            /*ws.onopen = function() {
+                ws.send("发送数据");
+                alert("数据发送中...");
+            };*/
+
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+                $('#img').attr('src','img/'+ received_msg +'.jpg').css({'display':'block'});
+                $('#addr').html('现在位于&emsp;：&emsp;'+received_msg)
+            };
+
+           /* ws.onclose = function() {
+                alert("连接已关闭...");
+            };*/
+        } else {
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+    WebSocketTest();
+</script>
+</body>
+</html>

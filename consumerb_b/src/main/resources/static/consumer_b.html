@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>航空指挥系统技术demo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <style>
+        body,html{background-image:url(img/consumer.jpg);}
+        h1{font-size: 6em}
+        #content{
+            color: #333;
+            text-align: center;
+            letter-spacing: 0.5em;
+            font-size:3em;
+            overflow-y: auto;
+            padding:120px auto;
+            margin:80px auto;
+            border-radius: 10px;
+            width: 800px;
+            box-shadow:  0 0  200px #155173 inset ;
+            height: 600px;
+        }
+        .con_ul li{display: block}
+        @media (max-width: 1366px){
+            #content{height: 400px;}
+        }
+    </style>
+</head>
+<body>
+<div id="head">
+    <h1>Motion运动响应</h1>
+</div>
+<div id="content">
+    <ul class="con_ul"></ul>
+</div>
+<div id="foot">
+    <h6>四川智捷天成科技有限公司版权所有</h6>
+</div>
+<script>
+   function WebSocketTest() {
+       if ("WebSocket" in window) {
+           var ws = new WebSocket("ws://localhost:8083/consumerB");
+           ws.onmessage = function (evt) {
+               var received_msg = evt.data;
+               var html;
+               if(received_msg == "推油杆"){
+                   html = '<li>正在加速...</li>';
+
+               }else if(received_msg == "松油杆"){
+                   html = '<li>正在减速...</li>';
+
+               }else if(received_msg == "左转向"){
+                   html = '<li>正在左转弯...</li>';
+
+               }else if(received_msg == "抬机头"){
+                   html = '<li>机头正在抬起...</li>';
+               }
+
+               $('.con_ul').prepend(html)
+           };
+
+           ws.onclose = function() {
+               alert("连接已关闭...");
+           };
+       } else {
+           alert("您的浏览器不支持 WebSocket!");
+       }
+   }
+   WebSocketTest();
+</script>
+</body>
+</html>

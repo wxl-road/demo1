@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>航空执行系统技术demo</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <style>
+        body,html{background-image:url(img/producer_bg.jpg);}
+    </style>
+</head>
+<body>
+<div id="head">
+    <h1>飞控协同平台</h1>
+</div>
+<div id="content">
+    <div id="left">
+        <h2>I/O地理信息</h2>
+        <ul class="pro_ul">
+            <li><span>双流机场</span><input type="button" value="切换" onclick="postData(this,'a')"/></li>
+            <li><span>首都机场</span><input type="button" value="切换" onclick="postData(this,'a')"/></li>
+            <li><span>浦东机场</span><input type="button" value="切换" onclick="postData(this,'a')"/></li>
+            <li><span>拉萨机场</span><input type="button" value="切换" onclick="postData(this,'a')"/></li>
+        </ul>
+    </div>
+    <div id="right">
+        <h2>Flight操纵</h2>
+        <ul class="pro_ul">
+            <li><span>推油杆</span><input type="button" value="执行" onclick="postData(this,'b')"/></li>
+            <li><span>松油杆</span><input type="button" value="执行" onclick="postData(this,'b')"/></li>
+            <li><span>左转向</span><input type="button" value="执行" onclick="postData(this,'b')"/></li>
+            <li><span>抬机头</span><input type="button" value="执行" onclick="postData(this,'b')"/></li>
+        </ul>
+    </div>
+</div>
+<div id="foot">
+    <h6>四川智捷天成科技有限公司版权所有</h6>
+</div>
+<script src="js/producer.js"></script>
+</body>
+</html>
